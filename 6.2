@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+#define max 100
+struct sinhvien
+{
+    char name[max];
+    float Point;
+    int YearOfBirth;
+} dssv[max];
+void input (int n){
+    char name_[max];
+    int i = 0;
+    int birth;
+    float d;
+    do {
+    printf ("Nhap vao ten sinh vien thu %d : ", i+1);
+    fflush(stdin);
+    gets(name_);
+    if (sizeof(name_) != 0){
+        strcpy(dssv[i].name, name_);
+    }
+    else {
+        printf ("Hay nhap ten cua sinh vien\n");
+        printf ("Ten sinh vien la :");
+         fflush(stdin);
+        gets(name_);
+        strcpy(dssv[i].name, name_);
+    }
+    printf("Nhap vao nam sinh :");
+     fflush(stdin);
+    scanf ("%d", &birth);
+    dssv[i].YearOfBirth = birth;
+    printf("Nhap vao diem thi sinh : ");
+    scanf("%f", &d);
+    dssv[i].Point = d;
+    i++;
+}
+while (i< n);
+}
+/////////////////////////////////////////////////
+//void Sort(int n, sinhvien dssv[])
+void Sort(int n, char *name_, int &birth, float &d  ){
+    sinhvien tg;
+    for (int i = 0; i< n; i++){
+        for (int j = i+1; j< n; j ++){
+        if (dssv[j].Point > dssv[i].Point){
+            tg =  dssv[i];
+             dssv[i]= dssv[j];
+            dssv[j]= tg;
+        }
+        } 
+    }}
+  /* void output(int n, char *name_, int &birth, float &d  ){
+    printf ("Danh sach duoc sap xep lai la : \n");
+    for (int i = 0; i< n; i++){
+        printf("________________________________________\n");
+            printf ("- Ten : %s\n", dssv[i].name );
+            printf("- Nam sinh : %d\n", dssv[i].YearOfBirth);
+            printf("- Diem thi : %.1f\n",dssv[i].Point);
+}
+} */
+    void output(int n, char *name_, int &birth, float &d  ){
+    printf ("Danh sach duoc sap xep lai la : \n");
+    printf("| STT |             Ten           |    Nam sinh    |  Diem thi |\n");
+     printf("_______________________________________________________________\n");
+    for (int i = 0; i< n; i++){  
+        printf("%6d%15s%25d%15.1f\n",i+1,dssv[i].name, dssv[i].YearOfBirth,dssv[i].Point);
+    }
+    }
+/////////////////////////////////////////////////
+int main (){
+    sinhvien danhsach[max];
+    int n;
+    int i;
+    printf("Nhap vao so sinh vien : ");
+    scanf ("%d", &n);
+    input(n);
+    Sort(n,dssv[i].name, dssv[i].YearOfBirth, dssv[i].Point);
+    output(n,dssv[i].name, dssv[i].YearOfBirth, dssv[i].Point);
+
+}
